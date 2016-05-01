@@ -55,6 +55,10 @@ Fixpoint :
   LPAREN MU ID COLON Type DOT Expr RPAREN { ExpFix ($3, $5, $7) }
 
 Type :
+  TypeTerm { $1 }
+| TypeTerm ARROW Type { TyFun ($1, $3) }
+
+TypeTerm :
   NUMTY           { TyNum }
 | BOOLTY          { TyBool }
-| LPAREN Type ARROW Type RPAREN { TyFun ($2, $4) }
+| LPAREN Type RPAREN { $2 }
