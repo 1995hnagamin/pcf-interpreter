@@ -7,6 +7,7 @@ FILES[] =
 	main
 	parser
 	syntax
+	typing
 
 OCamlGeneratedFiles(lexer.ml parser.mli parser.ml)
 
