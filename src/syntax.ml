@@ -29,7 +29,11 @@ let rec string_of_ty = function
   TyNum         -> "num"
 | TyBool        -> "bool"
 | TyFun (a, b)  ->
-    Printf.sprintf "(%s->%s)" (string_of_ty a) (string_of_ty b)
+    let domain = string_of_ty a in
+    let range  = string_of_ty b in
+    (match a with
+      TyFun _ -> Printf.sprintf "(%s)->%s" domain range
+    | _       -> Printf.sprintf "%s->%s"   domain range)
 
 let rec string_of_exp = function
   Num n -> string_of_int n
@@ -44,12 +48,12 @@ let rec string_of_exp = function
 | ExpApp (m, n) ->
     Printf.sprintf "(%s %s)" (string_of_exp m) (string_of_exp n)
 | ExpAbs (x, s, m) ->
-    Printf.sprintf "λ%s:%s.%s" x (string_of_ty s) (string_of_exp m)
+    Printf.sprintf "(lambda %s:%s.%s)" x (string_of_ty s) (string_of_exp m)
 | ExpFix (x, s, m) ->
-    Printf.sprintf "μ%s:%s.%s" x (string_of_ty s) (string_of_exp m)
+    Printf.sprintf "(mu %s:%s.%s)" x (string_of_ty s) (string_of_exp m)
 
 let rec string_of_value = function
   VNum n  -> string_of_int n
 | VBool b -> string_of_bool b
 | VAbs (x, s, m) ->
-    Printf.sprintf "λ%s:%s.%s" x (string_of_ty s) (string_of_exp m)
+    Printf.sprintf "(lambda %s:%s.%s)" x (string_of_ty s) (string_of_exp m)
