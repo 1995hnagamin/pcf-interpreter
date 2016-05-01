@@ -29,7 +29,11 @@ let rec string_of_ty = function
   TyNum         -> "num"
 | TyBool        -> "bool"
 | TyFun (a, b)  ->
-    Printf.sprintf "(%s->%s)" (string_of_ty a) (string_of_ty b)
+    let domain = string_of_ty a in
+    let range  = string_of_ty b in
+    (match a with
+      TyFun _ -> Printf.sprintf "(%s)->%s" domain range
+    | _       -> Printf.sprintf "%s->%s"   domain range)
 
 let rec string_of_exp = function
   Num n -> string_of_int n
