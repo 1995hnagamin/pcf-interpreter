@@ -16,7 +16,7 @@ let rec eval_ty env = function
     | _     -> raise (Typing_error "Not a number"))
 | ExpIsZero m ->
     (match eval_ty env m with
-      TyNum -> TyNum
+      TyNum -> TyBool
     | _     -> raise (Typing_error "Not a number"))
 | ExpIf (l, m, n) ->
     (match eval_ty env l with
