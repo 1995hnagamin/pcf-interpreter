@@ -1,0 +1,13 @@
+.omakedb*
+*.omc
+*.swp
+*.cmi
+*.cmo
+*.cmx
+*.o
+*.opt
+*.run
+
+/src/lexer.ml
+/src/parser.ml
+/src/parser.mli
