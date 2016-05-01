@@ -57,4 +57,4 @@ Fixpoint :
 Type :
   NUMTY           { TyNum }
 | BOOLTY          { TyBool }
-| Type ARROW Type { TyFun ($1, $3) }
+| LPAREN Type ARROW Type RPAREN { TyFun ($2, $4) }
