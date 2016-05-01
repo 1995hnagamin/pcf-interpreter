@@ -13,9 +13,10 @@ let eval_and_stringify buffer =
     let (ty, value) = eval_input buffer in
     Printf.sprintf "- %s : %s" (string_of_ty ty) (string_of_value value)
   with
-    Eval.Undefined -> "undef"
+    Environment.Not_bound x -> "ERROR: Unbound variable: " ^ x
+  | Eval.Undefined          -> "undef"
+  | Parsing.Parse_error     -> "ERROR: Syntax error"
   | Typing.Typing_error msg -> "ERROR: " ^ msg
-  | Environment.Not_bound x -> "ERROR: Unbound variable: " ^ x
 
 let rec read_eval_print_loop _ =
   try
