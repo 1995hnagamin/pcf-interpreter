@@ -1,18 +1,20 @@
 PCF Interpreter
 ===============
 
-# How to build
-Requirements:
+##Requirements
+
 * OCaml
 * ocamlfind
 * ocamlyacc/ocamllex
 * OMake
 
+## How to build
+
     git clone https://github.com/1995hnagamin/pcf-interpreter.git
     cd pcf-interpreter
     omake
 
-# Example
+## Example
 
     $ ./pcf.opt
     # succ(succ(100))
